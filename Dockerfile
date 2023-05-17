@@ -1,4 +1,4 @@
-FROM jeffguorg/archlinux-minimal
+FROM archlinux:base
 
 #########################################
 ##             SET LABELS              ##
@@ -25,10 +25,10 @@ ENV DEBIAN_FRONTEND=noninteractive MLDONKEY_DIR="/var/lib/mldonkey"
 
 # Download and install Dependencies & Main Software
 RUN echo "**** Install Dependencies & Main Software ****" 
-RUN pacman -Syu --noconfirm
+# RUN pacman -Syu --noconfirm
 RUN useradd -ms /bin/bash newuser
-RUN pacman -Syu --noconfirm wget
-RUN pacman -Syu --noconfirm gtk2 librsvg ocaml-num camlp4 lablgtk2 gd miniupnpc libnatpmp libminiupnpc.so
+RUN pacman -S --noconfirm wget
+RUN pacman -S --noconfirm gtk2 librsvg ocaml-num camlp4 lablgtk2 gd miniupnpc libnatpmp libminiupnpc.so
 USER newuser
 WORKDIR /home/newuser
 
