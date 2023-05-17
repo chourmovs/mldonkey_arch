@@ -64,7 +64,7 @@ For shell access while the container is running do `docker exec -it mldonkey /bi
 ### User / Group ID
 
 For security reasons and to avoid permissions issues with data volumes (`-v` flags), you may want to create a specific "docker" user with proper right accesses on your persistant folders. To find your user **uid** and **gid** you can use the `id <user>` command as below:
-
+ 
 ```
   $ id <dockeruser>
     uid=1001(dockeruser) gid=1001(dockergroup) groups=1001(dockergroup)
