@@ -1,4 +1,4 @@
-FROM shinsenter/scratch
+FROM jeffguorg/archlinux-minimal
 
 #########################################
 ##             SET LABELS              ##
