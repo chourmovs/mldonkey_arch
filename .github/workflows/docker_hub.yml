@@ -15,7 +15,6 @@ env:
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
-    uses: elgohr/Publish-Docker-Github-Action@v5
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
