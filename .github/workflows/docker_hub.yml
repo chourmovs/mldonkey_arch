@@ -10,7 +10,7 @@ env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
   # github.repository as chourmovs/mldonkey_arch
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: chourmovs/mldonkey_arch
 
 jobs:
 
@@ -42,13 +42,13 @@ jobs:
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
           username: ${{ secrets.DOCKER_USER }}
-          password: ${{ secrets.DOCKER_PASSWOrd }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          images: chourmovs/mldonkey_arch
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
