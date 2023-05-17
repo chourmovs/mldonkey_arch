@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM shinsenter/scratch
 
 #########################################
 ##             SET LABELS              ##
