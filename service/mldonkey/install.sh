@@ -4,26 +4,26 @@
 ##           CREATE FOLDERS            ##
 #########################################
 # Create files and directories folders
-mkdir -p \
-	/mnt/mldonkey_completed/files \
-	/mnt/mldonkey_completed/directories
+# mkdir -p \
+# 	/mnt/mldonkey_completed/files \
+#	/mnt/mldonkey_completed/directories
 
 #########################################
 ##          SET PERMISSIONS            ##
 #########################################
 # create a "docker" user
-useradd -U -d /var/lib/mldonkey docker
+# useradd -U -d /var/lib/mldonkey docker
 
 #########################################
 ##          RUN THE SERVICES           ##
 #########################################
 
 #Delete any *.ini.tmp files which may prevent mldonkey to start
-cd /var/lib/mldonkey
-rm -f *.ini.tmp
+#cd /var/lib/mldonkey
+# rm -f *.ini.tmp
 
 #Launch mldonkey
-exec mldonkey
+# exec mldonkey
 
 #########################################
 ##        ENVIRONMENTAL CONFIG         ##
@@ -32,7 +32,21 @@ exec mldonkey
 #Apply the given parameters on first boot (PGID, PUID, TZ)
 if [ ! -f "/etc/initialbootpassed" ]
 then
-	echo "-------> Initial boot"
+       	echo "-------> Initial boot"
+	
+	# create a "docker" user
+	useradd -U -d /var/lib/mldonkey docker
+	
+	# Create files and directories folders
+	 mkdir -p \
+	/mnt/mldonkey_completed/files \
+	/mnt/mldonkey_completed/directories
+	
+	#Delete any *.ini.tmp files which may prevent mldonkey to start
+	cd /var/lib/mldonkey
+	rm -f *.ini.tmp
+	 
+	 
 	if [ -n "${PGID}" ]
 	then
 		OLDGID=$(id -g docker)
@@ -67,4 +81,5 @@ then
 		/mnt/mldonkey_tmp
 else
 	echo "-------> Standard boot"
+	exec mldonkey
 fi
