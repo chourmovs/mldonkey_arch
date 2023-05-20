@@ -1,14 +1,17 @@
-[hub]:https://hub.docker.com/r/logicwar/mldonkey/
+[hub]:https://hub.docker.com/r/chourmovs/mldonkey_arch/
 [MLDonkey_wikipedia]:https://en.wikipedia.org/wiki/MLDonkey
 [tz_wikipedia]:https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+[help]:https://chourmovs.wixsite.com/blog
 
 # [Docker Container for MLDonkey][hub]
 
-This is a Docker image based on archlinux-baseimage for running  MLDonkey 3.1.7-2.
+This is a Docker image for running latest MLDonkey (3.1.7-2) from archlinux-base.
+Dockerfile and other buiding part are freely inspired by logicwar work and adapated to match the new env.
 
 MLDonkey is an open source, multi-protocol, peer-to-peer file sharing application that runs as a back-end server application on many platforms. It can be controlled through a user interface provided by one of many separate front-ends, including a Web interface, telnet interface and over a dozen native client programs. [Wikipedia][MLDonkey_wikipedia]
 
 MLDonkey is free software, released under the terms of the GNU General Public License.
+
 
 ## Usage
 
@@ -80,6 +83,7 @@ The first thing to do is to **set a password for the admin user**. you can use t
 
 By default only eDonkey is enabled. To enable the other networks go to `Options->Net` and set to `true` what you need.
 
+
 ## Container default configuation
 |Network|Type|MLDonkey default|Default Container Setup|Configuration file|
 |---|---|---|---|---|
@@ -97,7 +101,6 @@ By default only eDonkey is enabled. To enable the other networks go to `Options-
 |BitTorrent DHT |UDP|random|3617|bittorrent.ini|
 |DirectConnect|TCP|4444|4444|directconnect.ini|
 |DirectConnect|UDP|Same as TCP|4444|directconnect.ini|
-
 
 
 ## Versions
