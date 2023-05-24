@@ -3,27 +3,25 @@
 #########################################
 ##           CREATE FOLDERS            ##
 #########################################
-# Create files and directories folders
-# mkdir -p \
-# 	/mnt/mldonkey_completed/files \
-#	/mnt/mldonkey_completed/directories
+# Create files and directories folders if they don't exist
+
+mkdir -p \
+ 	/mnt/mldonkey_completed/files \
+	/mnt/mldonkey_completed/directories
+
 
 #########################################
 ##          SET PERMISSIONS            ##
 #########################################
-# create a "docker" user
-# useradd -U -d /var/lib/mldonkey docker
+# create a "docker" user if he don't exist
 
-#########################################
-##          RUN THE SERVICES           ##
-#########################################
+if id -u docker >/dev/null 2>&1; then
+    echo 'user exists'
+else
+    echo 'user missing'
+    useradd -U -d /var/lib/mldonkey docker
+fi
 
-#Delete any *.ini.tmp files which may prevent mldonkey to start
-#cd /var/lib/mldonkey
-# rm -f *.ini.tmp
-
-#Launch mldonkey
-# exec mldonkey
 
 #########################################
 ##        ENVIRONMENTAL CONFIG         ##
@@ -31,7 +29,7 @@
 
 #Apply the given parameters on first boot (PGID, PUID, TZ)
 if [ ! -f "/var/lib/mldonkey/initialbootpassed" ]
-then
+	then
        	echo "-------> Initial boot"
 	
 	# create a "docker" user
@@ -48,14 +46,14 @@ then
 	 
 	 
 	if [ -n "${PGID}" ]
-	then
+		then
 		OLDGID=$(id -g docker)
 		groupmod -g $PGID docker
 		find / -group $OLDGID -exec chgrp -h docker {} \;
 	fi
 
 	if [ -n "${PUID}" ]
-	then
+		then
 		OLDUID=$(id -u docker)
 		usermod -u $PUID docker
 		find / -user $OLDUID -exec chown -h docker {} \;
@@ -79,7 +77,8 @@ then
 		/var/lib/mldonkey \
 		/mnt/mldonkey_completed \
 		/mnt/mldonkey_tmp
-else
+	else
 	echo "-------> Standard boot"
 	exec mldonkey
+	
 fi
