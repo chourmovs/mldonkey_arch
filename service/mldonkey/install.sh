@@ -30,7 +30,7 @@
 #########################################
 
 #Apply the given parameters on first boot (PGID, PUID, TZ)
-if [ ! -f "/etc/initialbootpassed" ]
+if [ ! -f "/var/lib/mldonkey/initialbootpassed" ]
 then
        	echo "-------> Initial boot"
 	
@@ -63,9 +63,9 @@ then
 
 	if [ -n "${TZ}" ]; then echo $TZ > /etc/timezone; fi
 
-	touch /etc/initialbootpassed
+	touch /var/lib/mldonkey/initialbootpassed
 
-	#Setup mldlonky (need to be started once to create the proper files before copying the defaults)
+	#Setup mldlonkey (need to be started once to create the proper files before copying the defaults)
 	mldonkey &
 	echo "Waiting for mldonkey to start..."
 	sleep 5
